@@ -6,6 +6,8 @@
 //import java.util.List;
 
 public class Game {
+    //getting deBug
+    boolean deBug = Debug.getDeBug();
     public static void main(String[] args) {
         //getting main deck & discard
         Deck main = Deck.getMain();

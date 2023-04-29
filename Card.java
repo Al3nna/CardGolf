@@ -13,6 +13,9 @@ public class Card {
     String suit; //diamonds, hearts, spades, clubs
     String name;
 
+    //getting deBug
+    boolean deBug = Debug.getDeBug();
+
     //constructor for empty input
     public Card() {
         cardId = 0;
@@ -60,11 +63,22 @@ class Deck {
     static Deck main = new Deck();
     //creating function to get main
     public static Deck getMain() {return (main);}
+    //getting deBug
+    boolean deBug = Debug.getDeBug();
 
     //creating new pack
     public void createPack() {
         //clearing pack arraylist
         pack.clear();
+
+        //if debug is true
+        if (deBug) {
+            // double-checking that pack is empty
+
+            //printing pack size
+            System.out.println("Beginning Pack Size: "+pack.size());
+        }
+
         //id counts each card, starting from 0
         int id = 0;
         //creates sequence of 13 cards
@@ -118,9 +132,24 @@ class Deck {
                         break;
                 }
 
+                //if debug is true
+                if (deBug) {
+                    // Making sure values were set correctly
+
+                    //printing new card
+                    System.out.println("Current Card: "+pack.get(id));
+                }
+
                 //recognizing card has been added
                 id++;
             }
+        }
+        //if debug is true
+        if (deBug) {
+            // making sure pack has currect # of cards
+
+            //printing pack size
+            System.out.println("Ending Pack Size: "+pack.size());
         }
     }
 
@@ -184,11 +213,21 @@ class DiscardPile extends Card{
     static DiscardPile OBDiscard = new DiscardPile();
     //creating function to get OBDiscard
     public static DiscardPile getOBDiscard() {return (OBDiscard);}
+    //getting deBug
+    boolean deBug = Debug.getDeBug();
 
     //shuffling and transferring discard pile to main pack
     public void circulate() {
         //shuffling discard pile
         Collections.shuffle(discard);
+
+        //if debug is true
+        if (deBug) {
+            // checking discard pile size
+
+            // printing discard size
+            System.out.println("Beginning Discard Size: "+discard.size());
+        }
 
         //looping through discard
         for (int i = 0; i < discard.size(); i++) {
@@ -204,6 +243,14 @@ class DiscardPile extends Card{
         System.out.println("The discard pile has been shuffled and added back into the deck.");
         System.out.println("----------------------------------------------------------------");
         System.out.println();
+
+        //if debug is true
+        if (deBug) {
+            // Double-checking that discard pile is now empty
+
+            //printing discard size
+            System.out.println("Ending Discard Size: "+discard.size());
+        }
     }
 
     //printing cards in discard arraylist

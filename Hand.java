@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Hand extends Card {
+    //getting deBug
+    boolean deBug = Debug.getDeBug();
     //creating attributes
     int handCap = 7;
     String playerName;
@@ -85,6 +87,14 @@ public class Hand extends Card {
             pl = user;
         }
 
+        //if debug is true
+        if (deBug) {
+            // Making sure hand size is valid
+
+            //Printing player hand size
+            System.out.println("Player Hand Size: "+pl.hand.size());
+        }
+
         //if player has no cards
         if (pl.hand.size() == 0) {
             //looping through hand
@@ -131,6 +141,15 @@ public class Hand extends Card {
         for (int i = pl.hand.size(); i < pl.handCap; i++) {
             //setting attribute
             Card p = pack.get(i);
+
+            //if debug is true
+            if (deBug) {
+                // Making sure card is different
+
+                //Printing card
+                System.out.println("Current Card: "+p);
+            }
+
             //if deck is empty
             if (pack.size() == 0) {
                 //adding discarded cards to pack
@@ -145,6 +164,13 @@ public class Hand extends Card {
             pack.remove(p);
         }
         System.out.println(pl.playerName+" drew "+numDrawn+" card(s)");
+        //if debug is true
+        if (deBug) {
+            // Making sure player has correct # of cards
+
+            //printing player hand size
+            System.out.println(pl.hand.size());
+        }
         System.out.println();
     }
 
@@ -164,6 +190,14 @@ public class Hand extends Card {
 
         //adding card to discard pile
         discard.add(C);
+
+        //if debug is true
+        if (deBug) {
+            // Checking Card (to make sure correct message is printed)
+
+            //printing card
+            System.out.println("Current Card: "+C);
+        }
 
         //if card is Ace or 8
         if (C.court == "Ace" || C.seq == 8) {
@@ -188,6 +222,14 @@ public class Hand extends Card {
         //setting attribute
         int maxIND = 0;
         
+        //if debug is true
+        if (deBug) {
+            // Double-checking hand size is valid
+
+            //Printing comp hand size
+            System.out.println("Comp Hand Size: "+comp.hand.size());
+        }
+
         //if hand does not have correct num of cards
         if (comp.hand.size() < comp.handCap) {
             //running draw function
@@ -207,6 +249,13 @@ public class Hand extends Card {
             if (i == comp.hand.size()-1) {
                 //setting attribute
                 Card m = comp.hand.get(maxIND);
+                //if debug is true
+                if (deBug) {
+                    // Checking Card
+
+                    //printing max card
+                    System.out.println("Max Card: "+m);
+                }
 
                 System.out.println();
                 //discarding max card
@@ -252,6 +301,13 @@ public class Hand extends Card {
                 error = false;
                 //getting temp var from user
                 int temp = InputReader.nextInt();
+                //if debug is true
+                if (deBug) {
+                    // Checking entered value to make sure correct function is executed
+
+                    //printing value
+                    System.out.println("Entered Value: "+temp);
+                }
 
                 //if input != 0 & is greater than 3
                 if (temp != 0 && temp > 3) {
@@ -302,6 +358,14 @@ public class Hand extends Card {
         //calculating player scores
         calcScore(Hand.comp);
         calcScore(Hand.user);
+        //if debug is true
+        if (deBug) {
+            // Checking points so see if correct message is printed
+
+            //printing player points
+            System.out.println("Computer Final Score: "+comp.Score);
+            System.out.println("User Final Score: "+user.Score);
+        }
         
         //if computer has least points
         if (Hand.comp.Score < Hand.user.Score) {
@@ -394,10 +458,24 @@ public class Hand extends Card {
             pl = user;
         }
 
+        //if debug is true
+        if (deBug) {
+            // Showing who's cards are being scored (context for next debug message)
+
+            //printing current player
+            System.out.println("Player: "+pl.playerName);
+        }
         //looping through pl's hand
         for (int i = 0; i < pl.hand.size(); i++) {
             //setting attribute
             Card c = pl.hand.get(i);
+            //if debug is true
+            if (deBug) {
+                // checking seq # to make sure correct points are added
+
+                //printing current card's sequence #
+                System.out.println("Current Sequence Number: "+c.seq);
+            }
 
             //creating switch case
             switch (c.seq) {
@@ -418,6 +496,13 @@ public class Hand extends Card {
                 default:
                     pts = 5;
                     break;
+            }
+            //if debug is true
+            if (deBug) {
+                // Confirming # of points
+
+                // printing points
+                System.out.println("Points: "+pts);
             }
 
             //adding pts to total

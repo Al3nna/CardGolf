@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Command {
+    //getting deBug
+    boolean deBug = Debug.getDeBug();
     //setting attributes
     String cmd; //command
     boolean validCmd;
@@ -44,14 +46,36 @@ public class Command {
             System.out.println("Enter your desired action. To see the list of actions, enter "+'"'+"Actions"+'"');
             //getting command from user
             cmd = InputReader.nextLine();
+            //if debug is true
+            if (deBug) {
+                // Checking command
+
+                //printing original command
+                System.out.println("OG Command: "+cmd);
+            }
+
             System.out.println();
             //setting cmd to lower case
             cmd = cmd.toLowerCase();
+            //if debug is true
+            if (deBug) {
+                // Checking modified command to make sure correct command is executed
+
+                //printing updated command
+                System.out.println("Updated Command: "+cmd);
+            }
 
             //if input is atleast 3 chars long
             if (cmd.length() >= 3) {
                 //setting cmd to first 3 chars
                 cmd = cmd.substring(0,3);
+                //if debug is true
+                if (deBug) {
+                    // Making sure cmd was updated correctly
+
+                    //printing updated command
+                    System.out.println("Trimmed Command: "+cmd);
+                }
 
                 //looping through commands arraylist
                 for (int i = 0; i < commands.size(); i++) {
@@ -164,9 +188,23 @@ public class Command {
                     slot = InputReader.nextInt()-1;
                     //reading & discarding user input
                     InputReader.nextLine();
+                    //if debug is true
+                    if (deBug) {
+                        // Checking user input to make sure correct card is discarded
+
+                        //printing user input
+                        System.out.println("Entered Slot: "+slot);
+                    }
 
                     //if input is valid (1-7)
                     if (slot+1 > 0 && slot+1 < 8) {
+                        //if debug is true
+                        if (deBug) {
+                            // Showing which card was discarded
+
+                            //printing card
+                            System.out.println("Discarding: "+Hand.user.hand.get(slot));
+                        }
                         //discarding selected card
                         Hand.user.discard(Hand.user,Hand.user.hand.get(slot));
                         //updating var
